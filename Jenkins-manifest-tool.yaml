@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: manifest-tool
+spec:
+  serviceAccountName: jenkins-sa
+  containers:
+    - name: manifest-tool
+      image: gaussye/manifest-tool:latest
+      command:
+        - sleep
+      args:
+        - 99d
+  restartPolicy: Never
