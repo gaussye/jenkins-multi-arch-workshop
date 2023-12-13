@@ -41,6 +41,7 @@
              sh 'docker-credential-ecr-login list'
 
              sh '''
+             cat /root/.ecr/cache.json
              export repoid=$(jq .Registries /root/.ecr/cache.json  | jq keys[0])
              export AuthorizationToken=$(jq --arg repoid $repoid .Registries.$repoid.AuthorizationToken /root/.ecr/cache.json)
              export ProxyEndpoint=$(jq --arg repoid $repoid .Registries.$repoid.ProxyEndpoint /root/.ecr/cache.json)
