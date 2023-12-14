@@ -25,5 +25,5 @@ cat <<EOF >> /root/.docker/config.json
 }
 EOF
 
-
+echo "----------------------------"
 cat /root/.docker/config.json
