@@ -13,7 +13,7 @@
 
              sh 'pwd & ls'
 
-             sh './ecrtodcoker.sh'
+             sh './ecrtodocker.sh'
    
              sh '/go/src/github.com/manifest-tool/manifest-tool push from-args --platforms linux/amd64,linux/arm64 --template 899578970796.dkr.ecr.us-west-2.amazonaws.com/java-demo:202310-02-ARCHVARIANT --target 899578970796.dkr.ecr.us-west-2.amazonaws.com/java-demo:202310-02'
           }
