@@ -18,10 +18,10 @@ echo "        \"auth\": $AuthorizationToken"
 echo "       },"
 done | tee -a /root/.docker/config.json
 
-#sed -i '$ s/,$//' /root/.docker/config.json
+sed -i '$ s/,$//' /root/.docker/config.json
 
 cat <<EOF >> /root/.docker/config.json
-}
+  }
 }
 EOF
 
