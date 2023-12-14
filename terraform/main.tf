@@ -41,7 +41,7 @@ data "aws_ecrpublic_authorization_token" "token" {
 data "aws_availability_zones" "available" {}
 
 locals {
-  name   = "jenkins-workshop-eks"
+  name   = "ex-${basename(path.cwd)}"
   region = "us-west-2"
 
   vpc_cidr = "10.0.0.0/16"
@@ -50,7 +50,6 @@ locals {
   tags = {
     Blueprint  = local.name
     GithubRepo = "github.com/aws-ia/terraform-aws-eks-blueprints"
-    karpenter.sh/discovery = local.name
   }
 }
 
@@ -251,11 +250,18 @@ module "eks_blueprints_addons" {
       service_account_role_arn = module.efs_csi_driver_irsa.iam_role_arn
     }
   }
+  
+  
 
   enable_karpenter = true
   karpenter = {
     repository_username = data.aws_ecrpublic_authorization_token.token.user_name
     repository_password = data.aws_ecrpublic_authorization_token.token.password
+    iam_role_policy_attachments = [
+      {
+        policy_arn = "arn:aws:iam::aws:policy/AmazonEC2ContainerServiceforEC2Role"
+      },
+    ]
   }
   karpenter_node = {
     # Use static name so that it matches what is defined in `karpenter.yaml` example manifest
@@ -269,6 +275,8 @@ module "eks_blueprints_addons" {
 
   tags = local.tags
 }
+
+
 
 
 # a module to create aws efs with vpc endpoints and sg
