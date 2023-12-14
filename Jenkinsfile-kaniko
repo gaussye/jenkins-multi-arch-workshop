@@ -41,20 +41,30 @@
              sh 'docker-credential-ecr-login list'
 
              sh '''
-             cat /root/.ecr/cache.json
-             export repoid=$(jq .Registries /root/.ecr/cache.json  | jq keys[0])
-             export AuthorizationToken=$(jq --arg repoid $repoid .Registries.$repoid.AuthorizationToken /root/.ecr/cache.json)
-             export ProxyEndpoint=$(jq --arg repoid $repoid .Registries.$repoid.ProxyEndpoint /root/.ecr/cache.json)
-             mkdir /root/.docker
-             cat<<EOF> /root/.docker/config.json
-                {
-                       "auths": {
-                               $ProxyEndpoint: {
-                                        "auth": $AuthorizationToken
-                               }
-                       }
+              cat /root/.ecr/cache.json
+              repos=$(jq .Registries /root/.ecr/cache.json | jq -r 'keys[]')
+
+              mkdir /root/.docker
+              cat <<EOF > /root/.docker/config.json
+              {
+                  "auths": {
+              EOF
+
+              for repoid in $repos
+              do
+                AuthorizationToken=$(jq --arg repoid $repoid '.Registries[$repoid].AuthorizationToken' /root/.ecr/cache.json)
+                ProxyEndpoint=$(jq --arg repoid $repoid '.Registries[$repoid].ProxyEndpoint' /root/.ecr/cache.json)
+                echo "      $ProxyEndpoint: {"
+                echo "        \"auth\": $AuthorizationToken"
+                echo "       },"
+              done | tee -a /root/.docker/config.json
+
+              #sed -i '$ s/,$//' /root/.docker/config.json
+
+              cat <<EOF >> /root/.docker/config.json
                 }
-                EOF
+              }
+              EOF
              '''
    
              sh '/go/src/github.com/manifest-tool/manifest-tool push from-args --platforms linux/amd64,linux/arm64 --template 899578970796.dkr.ecr.us-west-2.amazonaws.com/java-demo:202310-02-ARCHVARIANT --target 899578970796.dkr.ecr.us-west-2.amazonaws.com/java-demo:202310-02'
