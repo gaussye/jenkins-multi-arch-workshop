@@ -638,8 +638,8 @@ agent:
   namespace: devops-tools
   # private registry for agent image
   jnlpregistry:
-  image: "jenkins/inbound-agent"
-  tag: "3107.v665000b_51092-15"
+  #image: "jenkins/inbound-agent"
+  #tag: "3107.v665000b_51092-15"
   workingDir: "/home/jenkins/agent"
   nodeUsageMode: "NORMAL"
   customJenkinsLabels: []
