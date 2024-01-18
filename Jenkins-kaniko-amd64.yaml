@@ -15,10 +15,10 @@ spec:
       args:
         - 99d
       volumeMounts:
-      - mountPath: /var/jenkins_home
-        name: jenkins-home
+      - mountPath: /home/jenkins/agent/.m2
+        name: m2-home
   restartPolicy: Never
   volumes:
-  - name: jenkins-home
+  - name: m2-home
     persistentVolumeClaim:
       claimName: jenkins-pv-claim
