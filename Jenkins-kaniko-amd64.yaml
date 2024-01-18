@@ -14,4 +14,11 @@ spec:
         - sleep
       args:
         - 99d
+      volumeMounts:
+      - mountPath: /var/jenkins_home
+        name: jenkins-home
   restartPolicy: Never
+  volumes:
+  - name: jenkins-home
+    persistentVolumeClaim:
+      claimName: jenkins-pv-claim
