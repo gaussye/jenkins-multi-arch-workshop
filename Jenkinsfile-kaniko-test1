@@ -7,7 +7,7 @@
               agent {
                  kubernetes {
                    yamlFile 'Jenkins-kaniko-amd64.yaml'
-                   workspaceVolume dynamicPVC(storageClassName:'gp2', accessModes: 'ReadWriteOnce', requestsSize: '10Gi')
+                   workspaceVolume dynamicPVC(storageClassName:'ebs-gp3-sc', accessModes: 'ReadWriteOnce', requestsSize: '10Gi')
                  }
               }
               steps {
