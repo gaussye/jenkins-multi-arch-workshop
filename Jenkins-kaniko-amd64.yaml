@@ -4,6 +4,8 @@ metadata:
   name: kaniko
   namespace: devops-tools
 spec:
+  securityContext:
+    fsGroup: 1000
   serviceAccountName: jenkins-sa
   nodeSelector:
     kubernetes.io/arch: amd64
