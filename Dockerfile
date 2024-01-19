@@ -3,7 +3,6 @@ WORKDIR /app
 COPY src/ /app/src
 COPY pom.xml /app/pom.xml
 VOLUME /home/jenkins/agent/.m2 ~/.m2
-RUN ls ~/.m2/repository
 RUN mvn clean package -Dmaven.test.skip=true
 RUN ls ~/.m2/repository
 
