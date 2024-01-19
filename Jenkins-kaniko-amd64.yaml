@@ -23,4 +23,4 @@ spec:
   volumes:
   - name: m2-home
     persistentVolumeClaim:
-      claimName: jenkins-pv-claim
+      claimName: jenkins-pv-claim-m2
