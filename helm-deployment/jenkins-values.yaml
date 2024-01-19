@@ -697,7 +697,7 @@ agent:
   #   serverAddress: "192.0.2.0"
   #   serverPath: /var/lib/containers
   - type: PVC
-    claimName: jenkins-pv-claim
+    claimName: jenkins-pv-claim-m2
     mountPath: /home/jenkins/agent/.m2
     readOnly: false
   - type: PVC
