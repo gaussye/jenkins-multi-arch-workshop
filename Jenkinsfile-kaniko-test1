@@ -13,7 +13,7 @@
               steps {
                 container('kaniko') {
                    sh 'pwd & ls'
-                   sh 'ls /var/jenkins_home/jobs/test/builds'
+                   sh 'ls /home/jenkins/agent/.m2'
                    sh '/kaniko/executor --context `pwd` --dockerfile `pwd`/Dockerfile --destination 899578970796.dkr.ecr.us-west-2.amazonaws.com/java-demo:202310-02-amd64'
                 }
               }
