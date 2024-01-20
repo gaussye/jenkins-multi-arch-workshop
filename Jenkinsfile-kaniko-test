@@ -18,6 +18,10 @@
           container('maven') {
              sh 'mvn clean package -Dmaven.test.skip=true'
           }
+
+          container('maven') {
+             sh 'ls -la'
+          }
         }
       }
       stage('Build & Push docker image'){
