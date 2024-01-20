@@ -1,0 +1,4 @@
+FROM openjdk:8-jre-alpine
+WORKDIR /app
+COPY /app/target/demo-V1024.jar /app
+CMD ["java -jar demo-V1024.jar"]
