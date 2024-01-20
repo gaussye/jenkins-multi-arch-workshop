@@ -9,7 +9,6 @@
       stage('Build with Maven'){
         steps {
           container('maven') {
-             sh 'sleep 100s'
              sh 'mvn clean package -Dmaven.test.skip=true'
           }
         }
