@@ -1,11 +1,17 @@
   pipeline {
-    agent {
-             kubernetes {
-               yamlFile 'Jenkins-maven.yaml'
-               workspaceVolume dynamicPVC(storageClassName:'ebs-gp3-sc', accessModes: 'ReadWriteOnce', requestsSize: '10Gi')
-             }
-    }
+    //agent {
+    //  kubernetes {
+    //    yamlFile 'Jenkins-maven.yaml'
+    //    workspaceVolume dynamicPVC(storageClassName:'ebs-gp3-sc', accessModes: 'ReadWriteOnce', requestsSize: '10Gi')
+    //  }
+    //}
     stages {
+      agent {
+      kubernetes {
+        yamlFile 'Jenkins-maven.yaml'
+        workspaceVolume dynamicPVC(storageClassName:'ebs-gp3-sc', accessModes: 'ReadWriteOnce', requestsSize: '10Gi')
+      }
+    }
       stage('Build with Maven'){
         steps {
           container('maven') {
