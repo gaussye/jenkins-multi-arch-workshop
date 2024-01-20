@@ -1,5 +1,4 @@
-
-  pipeline {
+pipeline {
     agent none
     stages {
       stage('Compile & Build'){
