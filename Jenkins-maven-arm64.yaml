@@ -8,7 +8,7 @@ spec:
     fsGroup: 1000
   containers:
   - name: maven
-    image: maven:3.3.9-jdk-8-alpine
+    image: maven:3.6.1-jdk-8-alpine
     command: ['cat']
     tty: true
     volumeMounts:
