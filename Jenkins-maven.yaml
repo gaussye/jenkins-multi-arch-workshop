@@ -11,6 +11,15 @@ spec:
     volumeMounts:
     - mountPath: /root/.m2
       name: m2-home
+  - name: kaniko
+    image: gcr.io/kaniko-project/executor:debug
+    command:
+      - sleep
+    args:
+      - 99d
+    volumeMounts:
+    - mountPath: /home/jenkins/agent/.m2
+      name: m2-home
   restartPolicy: Never
   volumes:
   - name: m2-home
