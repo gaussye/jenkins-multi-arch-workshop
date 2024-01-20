@@ -8,3 +8,11 @@ spec:
     image: maven:3.3.9-jdk-8-alpine
     command: ['cat']
     tty: true
+    volumeMounts:
+    - mountPath: /root/.m2
+      name: m2-home
+  restartPolicy: Never
+  volumes:
+  - name: m2-home
+    persistentVolumeClaim:
+      claimName: jenkins-pv-claim-m2
