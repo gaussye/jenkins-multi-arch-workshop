@@ -5,6 +5,7 @@
         agent {
              kubernetes {
                yamlFile 'Jenkins-maven.yaml'
+               workspaceVolume dynamicPVC(storageClassName:'ebs-gp3-sc', accessModes: 'ReadWriteOnce', requestsSize: '10Gi')
              }
         }
         steps {
