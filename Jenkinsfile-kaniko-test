@@ -10,6 +10,7 @@
         }
         steps {
           container('maven') {
+             sh 'sleep 600s'
              sh 'mvn clean package -Dmaven.test.skip=true'
           }
         }
