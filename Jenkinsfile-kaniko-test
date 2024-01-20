@@ -1,13 +1,12 @@
   pipeline {
-    agent none
-    stages {
-      stage('Build with Maven'){
-        agent {
+    agent {
              kubernetes {
                yamlFile 'Jenkins-maven.yaml'
                workspaceVolume dynamicPVC(storageClassName:'ebs-gp3-sc', accessModes: 'ReadWriteOnce', requestsSize: '10Gi')
              }
-        }
+    }
+    stages {
+      stage('Build with Maven'){
         steps {
           container('maven') {
              sh 'sleep 100s'
