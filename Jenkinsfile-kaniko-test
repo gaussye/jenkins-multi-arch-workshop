@@ -17,7 +17,7 @@
         steps{
            container('kaniko') {
              sh 'pwd & ls'
-             '/kaniko/executor --context `pwd` --dockerfile `pwd`/DockerfileWithoutMaven --destination 899578970796.dkr.ecr.us-west-2.amazonaws.com/java-demo:202310-02-amd64'
+             sh '/kaniko/executor --context `pwd` --dockerfile `pwd`/DockerfileWithoutMaven --destination 899578970796.dkr.ecr.us-west-2.amazonaws.com/java-demo:202310-02-amd64'
            }
         }
       }
