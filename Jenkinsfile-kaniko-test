@@ -13,5 +13,13 @@
           }
         }
       }
+      stage('Build & Push docker image'){
+        steps{
+           container('kaniko') {
+             sh 'pwd & ls'
+             //sh '/kaniko/executor --context `pwd` --dockerfile `pwd`/Dockerfile --destination 899578970796.dkr.ecr.us-west-2.amazonaws.com/java-demo:202310-02-amd64'
+           }
+        }
+      }
     }
 }
