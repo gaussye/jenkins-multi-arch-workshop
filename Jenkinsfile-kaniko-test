@@ -1,10 +1,10 @@
   pipeline {
     agent none
     stages {
-      stage('Manifest'){
+      stage('Build with Maven'){
         agent {
              kubernetes {
-               yamlFile 'Jenkins-manifest-tool.yaml'
+               yamlFile 'Jenkins-maven.yaml'
              }
         }
         steps {
