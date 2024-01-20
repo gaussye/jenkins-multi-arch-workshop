@@ -19,7 +19,7 @@ pipeline {
                 }
               }
             }
-          stage("Compile & Build for AMD64 platform") {
+          stage("Compile & Build for ARM64 platform") {
               agent {
                  kubernetes {
                    yamlFile 'Jenkins-maven-arm64.yaml'
