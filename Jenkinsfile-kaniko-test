@@ -7,13 +7,13 @@
     //  }
     //}
     stages {
-      agent {
-      kubernetes {
-        yamlFile 'Jenkins-maven.yaml'
-        workspaceVolume dynamicPVC(storageClassName:'ebs-gp3-sc', accessModes: 'ReadWriteOnce', requestsSize: '10Gi')
-      }
-    }
       stage('Build with Maven'){
+        agent {
+          kubernetes {
+            yamlFile 'Jenkins-maven.yaml'
+            workspaceVolume dynamicPVC(storageClassName:'ebs-gp3-sc', accessModes: 'ReadWriteOnce', requestsSize: '10Gi')
+          }
+        }
         steps {
           container('maven') {
              sh 'mvn clean package -Dmaven.test.skip=true'
@@ -21,6 +21,12 @@
         }
       }
       stage('Build & Push docker image'){
+        agent {
+          kubernetes {
+            yamlFile 'Jenkins-maven.yaml'
+            workspaceVolume dynamicPVC(storageClassName:'ebs-gp3-sc', accessModes: 'ReadWriteOnce', requestsSize: '10Gi')
+          }
+        }
         steps{
            container('kaniko') {
              sh 'pwd & ls'
