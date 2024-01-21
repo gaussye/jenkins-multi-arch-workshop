@@ -1,15 +1,14 @@
 pipeline {
-    agent none
+    agent {
+         kubernetes {
+           yamlFile 'Jenkins-maven-amd64.yaml'
+           workspaceVolume dynamicPVC(storageClassName:'ebs-gp3-sc', accessModes: 'ReadWriteOnce', requestsSize: '10Gi')
+         }
+      }
     stages {
       stage('Compile & Build'){
         parallel {
           stage("Compile & Build for AMD64 platform") {
-              agent {
-                 kubernetes {
-                   yamlFile 'Jenkins-maven-amd64.yaml'
-                   workspaceVolume dynamicPVC(storageClassName:'ebs-gp3-sc', accessModes: 'ReadWriteOnce', requestsSize: '10Gi')
-                 }
-              }
               steps {
                 container('maven') {
                    sh 'mvn clean package -Dmaven.test.skip=true'
