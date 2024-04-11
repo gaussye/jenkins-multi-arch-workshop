@@ -11,7 +11,7 @@
               }
               steps {
                 container('kaniko') {
-                   sh '/kaniko/executor --context `pwd` --dockerfile `pwd`/Dockerfile --destination 899578970796.dkr.ecr.us-west-2.amazonaws.com/java-demo:202310-02-amd64'
+                   sh '/kaniko/executor --context `pwd` --dockerfile `pwd`/Dockerfile --destination 617482875210.dkr.ecr.us-east-1.amazonaws.com/java-demo:202310-02-amd64'
                 }
               }
             }
@@ -23,7 +23,7 @@
               }
               steps {
                 container('kaniko') {
-                   sh '/kaniko/executor --context `pwd` --dockerfile `pwd`/Dockerfile --destination 899578970796.dkr.ecr.us-west-2.amazonaws.com/java-demo:202310-02-arm64'
+                   sh '/kaniko/executor --context `pwd` --dockerfile `pwd`/Dockerfile --destination 617482875210.dkr.ecr.us-east-1.amazonaws.com/java-demo:202310-02-arm64'
                 }
               }
           }
@@ -41,7 +41,7 @@
              sh 'docker-credential-ecr-login list'
              sh 'chmod 700 ecrtodocker.sh'
              sh './ecrtodocker.sh'
-             sh '/go/src/github.com/manifest-tool/manifest-tool push from-args --platforms linux/amd64,linux/arm64 --template 899578970796.dkr.ecr.us-west-2.amazonaws.com/java-demo:202310-02-ARCHVARIANT --target 899578970796.dkr.ecr.us-west-2.amazonaws.com/java-demo:202310-02'
+             sh '/go/src/github.com/manifest-tool/manifest-tool push from-args --platforms linux/amd64,linux/arm64 --template 617482875210.dkr.ecr.us-east-1.amazonaws.com/java-demo:202310-02-ARCHVARIANT --target 617482875210.dkr.ecr.us-east-1.amazonaws.com/java-demo:202310-02'
           }
         }
       }
