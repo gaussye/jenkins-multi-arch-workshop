@@ -42,7 +42,7 @@ data "aws_availability_zones" "available" {}
 
 locals {
   name   = "ex-${basename(path.cwd)}"
-  region = "us-west-2"
+  region = "us-east-1"
 
   vpc_cidr = "10.0.0.0/16"
   azs      = slice(data.aws_availability_zones.available.names, 0, 3)
@@ -212,7 +212,7 @@ module "eks" {
       
       min_size     = 1
       max_size     = 3
-      desired_size = 1
+      desired_size = 2
     }
   }
 
